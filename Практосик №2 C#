@@ -1,0 +1,78 @@
+using System;
+
+public class Rectangle
+{
+    private double _width;  //ширина 
+    private double _height; //высота 
+
+    //конструктор по умолчанию
+    public Rectangle()
+    {
+        _width = 4.0;
+        _height = 3.0;
+    }
+
+    //конструктор с параметрами
+    public Rectangle(double width, double height)
+    {
+        _width = width;
+        _height = height;
+    }
+
+    //конструктор копирования
+    public Rectangle(Rectangle rectangle)
+    {
+        if (rectangle != null)
+        {
+            _width = rectangle._width;
+            _height = rectangle._height; 
+        }
+    }
+
+    //свойства для ширины и высоты
+    public double Width
+    {
+        get { return _width; }
+        set { _width = value; }
+    }
+
+    public double Height
+    {
+        get { return _height; }
+        set { _height = value; }
+    }
+
+    //метод для вычисления площади
+    public double Area()
+    {
+        return _width * _height;
+    }
+
+    //деструктор
+    ~Rectangle()
+    {
+        //здесь можно освободить ресурсы
+        Console.WriteLine($"Прямоугольник с шириной {_width} и высотой {_height} разрушается.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        //пример использования класса Rectangle
+        Rectangle rect1 = new Rectangle();
+        Console.WriteLine($"Площадь прямоугольника 1: {rect1.Area()}");
+
+        Rectangle rect2 = new Rectangle(6.0, 4.0);
+        Console.WriteLine($"Площадь прямоугольника 2: {rect2.Area()}");
+
+        Rectangle rect3 = new Rectangle(rect2);
+        Console.WriteLine($"Площадь прямоугольника 3 (копия прямоугольника 2): {rect3.Area()}");
+
+        //задание новых значений
+        rect1.Width = 8.0;
+        rect1.Height = 4.0;
+        Console.WriteLine($"Обновлённая площадь прямоугольника 1: {rect1.Area()}");
+    }
+}
